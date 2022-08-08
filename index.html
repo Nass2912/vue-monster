@@ -17,6 +17,11 @@
       <h1>Monster Slayer</h1>
     </header>
     <div id="game">
+      <div style="display:flex; justify-content: space-around">
+        <div>Monster: {{ monsterScore }}</div>
+        <div style="font-size: 24px"> v/s</div>
+        <div>Player: {{ playerScore }}</div>
+      </div>
       <section id="monster" class="container">
         <h2>Monster Health</h2>
         <div class="healthbar">
@@ -29,15 +34,24 @@
           <div class="healthbar__value" :style="playerStyle"></div>
         </div>
       </section>
-      <section id="controls">
+      <section class="container" v-if="scored != 0">
+        <h2>Game Over!</h2>
+        <h3 v-if="scored === 2">You lost</h3>
+        <h3 v-else-if="scored === 3">You won</h3>
+        <h3 v-else-if="scored === 1">It's a draw</h3>
+        <button @click="newGame()"> Play Again</button>
+      </section>
+      <section id="controls" v-if="scored === 0">
         <button @click="launchAttack()" >ATTACK</button>
         <button :disabled="enableSpecialattack" @click="specialAttackMonster()">SPECIAL ATTACK</button>
         <button @click="healPlayer()">HEAL</button>
-        <button>SURRENDER</button>
+        <button @click="surrender()">SURRENDER</button>
       </section>
-      <section id="log" class="container">
+      <section id="log" class="container" @click="revealBattleLog()">
         <h2>Battle Log</h2>
-        <ul></ul>
+        <ul v-if="bolean" v-for="(dam,index) in damage">
+          <li>{{ dam }} {{got}}</li>
+        </ul>
       </section>
     </div>
   </body>

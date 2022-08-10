@@ -49,8 +49,8 @@
       </section>
       <section id="log" class="container" @click="revealBattleLog()">
         <h2>Battle Log</h2>
-        <ul v-if="bolean" v-for="(dam,index) in damage">
-          <li>{{ dam }} {{got}}</li>
+        <ul v-if="bolean" >
+          <li v-for="(dam,index) in damage" :key="index">{{ dam }}</li>
         </ul>
       </section>
     </div>

@@ -100,6 +100,11 @@ button:disabled {
 
 #log li {
   margin: 0.5rem 0;
+  display: inline-block;
+}
+
+#log li:nth-child(2n) {
+  display: block;
 }
 
 .log--player {

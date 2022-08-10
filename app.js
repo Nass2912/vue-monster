@@ -12,8 +12,7 @@ const app = Vue.createApp({
             monsterScore: 0,
             playerScore: 0,
             bolean: false,
-            damage: [],
-            damageGotten: []
+            damage: []
         }
     },
 
@@ -21,11 +20,9 @@ const app = Vue.createApp({
         damageDealt(value) {
             this.damage.push(`You did ${value} damage`)
         },
-
         damageGot(value) {
-            this.damageGotten.push(`recieved ${value} damage`)
+            this.damage.push(`recieved ${value} damage`)
         },
-
         launchAttack() {
             this.currentRound++;
             const damage = getRandValue(5, 12);
@@ -62,12 +59,10 @@ const app = Vue.createApp({
             this.scored = 0;
             this.damage = [];
         },
-
         surrender() {
             this.scored = 2;
             this.monsterScore += 1;
         },
-
         revealBattleLog() {
             this.bolean = !this.bolean;
         }
@@ -82,7 +77,6 @@ const app = Vue.createApp({
                 width: this.monsterHealth + '%'
             }
         },
-
         playerStyle() {
             if (this.playerHealth < 0) {
                 return { width: '0%' }
@@ -91,7 +85,6 @@ const app = Vue.createApp({
                 width: this.playerHealth + '%'
             }
         },
-
         enableSpecialattack() {
             return this.currentRound % 3 !== 0
         }
@@ -106,7 +99,6 @@ const app = Vue.createApp({
                 this.playerScore += 1;
             }
         },
-
         monsterHealth(value) {
             if (value < 1 && this.playerHealth <= 0) {
                 this.scored = 1;
